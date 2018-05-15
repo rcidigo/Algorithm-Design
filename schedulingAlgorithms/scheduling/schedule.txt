@@ -1,0 +1,288 @@
+package cs431;
+
+
+////////////////////////////
+//Programmer: Richard Idigo
+//Project: Scheduling Algorithms
+//Instructor: Professor Young
+//Due Date: November 17, 2015
+/////////////////////////////
+//LAST UPDATE: 10/16 22:00
+//Notes: Debug round robin, something weird is happening
+////////////////////////////////
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+
+
+public class ScheduleAlpha
+{
+	public static void main (String [] args) throws FileNotFoundException
+	{
+
+		Job [] jobs= new Job[20];
+		int size=loadArray(jobs);
+
+		// scanner for input//
+	
+
+
+		// instruction message	
+		System.out.println("This program will simulate several scheduling algorithms");
+		System.out.println("A GANTT Chart will be made for:" 
+				+"\n F-First Come First Served"
+				+"\n S-Shortes Job First"
+				+"\n R-Round Robin \n");
+		
+		System.out.printf("%4s  %s \n","Jobs", "BurstTime");
+		System.out.println("----------------");
+		printArray(jobs, size);
+
+
+		FCFS(jobs,size );
+		SJF(jobs, size);
+		
+		//reload array
+		loadArray(jobs);
+		roundRobin(jobs, 3,size);
+		
+		//reload array
+		loadArray(jobs);
+		roundRobin(jobs,4, size);
+
+	}
+
+	public static int loadArray(Job [] a) throws FileNotFoundException
+	{
+		// load the array first
+		File file= new File("testdata2.txt");
+		Scanner Fileread= new Scanner(file);
+		int i=0;
+		while(Fileread.hasNextLine() && i<a.length )
+		{
+			String str= Fileread.next();
+			int num= Fileread.nextInt();
+			a[i]=new Job(str,num);
+			i++;
+
+		}
+
+		Fileread.close();
+		return i;
+
+	}
+
+	public static void FCFS (Job [] a, int s)
+	{
+		System.out.println();
+		int startTime=0;
+		double totalTime=0;
+
+
+		System.out.println("GANTT CHART FOR FCFS");
+		System.out.println("------------------------");
+
+		for (int i=0;i<s; i++)
+		{
+
+			System.out.print(startTime+" [" +a[i].getJobName()+" ] ");
+
+//			System.out.print(a[i].getJobName()+"   "+startTime+"    "+(startTime+a[i].getJobTime()));
+		
+			startTime=startTime + a[i].getJobTime();
+			totalTime+=startTime;
+		}
+
+		System.out.print(" "+startTime);
+		System.out.println("\nTotal Time is: "+totalTime);
+		System.out.println("AVG TurnAround Time: "+(totalTime/s));
+
+	}
+
+	public static void SJF(Job [] a, int s)
+	{
+		System.out.println();
+		sortJobs(a,s);
+	//	printArray(a,s);
+
+		int startTime=0;
+		double totalTime=0;
+
+		System.out.println("GANTT CHART FOR SJF");
+		System.out.println("------------------------");
+
+		for (int i=0;i<s; i++)
+		{
+
+			System.out.print(startTime+" [" +a[i].getJobName()+"] ");
+
+//			System.out.print(a[i].getJobName()+"   "+startTime+"    "+(startTime+a[i].getJobTime()));
+		
+			startTime=startTime + a[i].getJobTime();
+			totalTime+=startTime;
+		}
+		System.out.print(startTime);
+		System.out.println("\nTotal Time is: "+totalTime);
+		System.out.println("AVG TurnAround Time: "+(totalTime/s));
+
+	}
+
+	public static void roundRobin( Job [] a, int q, int s)
+	{
+		System.out.println();
+		int countTime = 0;
+		float totalTime=0;
+		int i=0;
+
+		int allTime=updateAllTime(a,s);
+	//	System.out.println(allTime);
+		System.out.println("GANTT CHART FOR RR with "+q+ " second Quantum");
+		System.out.println("------------------------");
+
+
+
+		while( i< s && allTime>0)
+		{
+			if(a[i].getJobTime()-q <=0)
+			{
+				System.out.print(+countTime+"["+ a[i].getJobName()+"] ");
+
+				countTime+=a[i].getJobTime();
+				allTime-=a[i].getJobTime();
+				a[i].setJobTime(0);
+				totalTime+=countTime;
+			//	System.out.println(totalTime);
+
+
+			}
+			else
+			{
+
+				System.out.print(countTime+" ["+a[i].getJobName()+"] ");
+
+				a[i].setJobTime(a[i].getJobTime()-q);
+				countTime+=q;
+				allTime-=q;
+			}
+			i++;
+		}
+		System.out.println(countTime);
+		if(allTime > 0)
+		{
+			moreRR(a, countTime, totalTime, allTime,s,q);
+		}
+		else{
+			System.out.println(countTime);
+			System.out.println("TurnAround Time is: "+totalTime);
+			System.out.println("AVG TurnAround Time: "+totalTime/s);
+		}
+
+	}
+
+	public static void moreRR(Job [] b, int countT, float tTime, int aTime, int size,int q)
+	{
+		int i=0;
+
+		while( i< size && aTime>0)
+		{
+			if(b[i].getJobTime()==0) i++;
+
+			else{
+
+				if(b[i].getJobTime()-q <=0)
+				{
+					System.out.print(countT+" ["+b[i].getJobName()+"]");
+
+					countT+=b[i].getJobTime();
+					tTime+=countT;
+					//System.out.println(tTime);
+					aTime-=b[i].getJobTime();
+					b[i].setJobTime(0); // burst time depe
+
+
+				}
+				else
+				{
+
+					System.out.print(countT+" ["+b[i].getJobName()+"] ");
+
+					b[i].setJobTime(b[i].getJobTime()-q);
+					countT+=q;
+					aTime-=q;
+				}
+				i++;
+			}
+		}
+
+		System.out.print(countT+"\n");
+		if(aTime>0)
+			{	
+				moreRR(b,countT,tTime, aTime,size, q);
+			
+			}
+
+		else{
+			System.out.println("\nTurnAround Time: "+ tTime);
+			System.out.println("AVG TurnAround Time: "+tTime/size);
+		}
+
+	}
+	public static void sortJobs(Job [] a, int s)
+	{
+		int i, j, minIndex, tmp;
+		String tmpName;
+
+		for (i = 0; i < s - 1; i++)
+		{
+
+			minIndex = i;
+
+			for (j = i + 1; j < s; j++)
+
+				if (a[j].getJobTime() < a[minIndex].getJobTime())
+
+					minIndex = j;
+
+			if (minIndex != i) 
+			{
+
+				tmp = a[i].getJobTime();
+				tmpName=a[i].getJobName();
+
+				a[i].setJobTime(a[minIndex].getJobTime()) ;
+				a[i].setJobName(a[minIndex].getJobName()) ;
+
+				a[minIndex].setJobTime(tmp);
+				a[minIndex].setJobName(tmpName);
+
+
+			}
+
+		}
+
+	}
+	public static void printArray(Job [] a, int s)
+	{
+		// prints array
+		int z=0;
+		while(z< s)
+		{
+			System.out.println(a[z]);
+			z++;
+		}
+
+	}
+
+	public static int updateAllTime(Job [] a,int size)
+	{
+		// prints array
+		int Time=0;
+		for(int i=0; i<size;i++)
+		{
+			Time+=a[i].getJobTime();
+		}
+
+		return Time;
+	}
+}
+

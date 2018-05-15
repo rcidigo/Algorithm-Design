@@ -1,0 +1,68 @@
+package cs431;
+
+//This program will calculate the area of a triangle
+
+//STEP 1: CREATE CLASS
+//STEP 2: CREATE FIELDS
+//STEP 3: CREATE CONSTRUCTORS
+//STEP 4: CREATE METHODS
+
+///////////////////////////////////////////////////////
+//STEP 1: CREAT CLASS
+//This is the triangle class, this statement is creating  class
+//called triangle in which we will embed API to calculate the area
+//of a triangle
+public class Job {
+	
+////////////////////////////////////////////////
+//STEP 2: CREATE THE FIELDS
+// These are the following fields I will use for the job class
+
+	private  String jobName;
+	private int jobTime;
+	
+/////////////////////////////////////////////
+//STEP3: CREATE THE CONSTRUCTORS
+// I willl first create the default constructor then I will create the 
+// args constructor
+//
+
+
+	
+	public Job (String jobName, int jobTime)
+	{
+		this.jobName=jobName;
+		this.jobTime=jobTime;
+	}
+	
+/////////////////////////////////////////////
+//STEP4: CREATE THE METHODS
+// No methods really pop into mind, 
+// maybe one for round robin ???
+	
+	public  int roundRobin (int q)
+	{
+		return jobTime-q;
+	}
+	@Override
+	public String toString ()
+	{
+		return jobName +" "+jobTime;
+	}
+	public String getJobName()
+	{
+		return jobName;
+	}
+	public int getJobTime()
+	{
+		return jobTime;
+	}
+	public void setJobTime(int newTime)
+	{
+		jobTime=newTime;
+	}
+	public void setJobName(String newName)
+	{
+		jobName=newName;
+	}
+}

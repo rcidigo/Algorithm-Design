@@ -1,0 +1,182 @@
+*****RESULTS TESTDATA 1*****
+
+This program will simulate several scheduling algorithms
+A GANTT Chart will be made for:
+ F-First Come First Served
+ S-Shortes Job First
+ R-Round Robin 
+
+Jobs  BurstTime 
+----------------
+Job101 9
+Job102 4
+Job103 11
+Job104 2
+Job105 3
+Job106 5
+
+GANTT CHART FOR FCFS
+------------------------
+0 [Job101 ] 9 [Job102 ] 13 [Job103 ] 24 [Job104 ] 26 [Job105 ] 29 [Job106 ]  34
+Total Time is: 135.0
+AVG TurnAround Time: 22.5
+
+GANTT CHART FOR SJF
+------------------------
+0 [Job104] 2 [Job105] 5 [Job102] 9 [Job106] 14 [Job101] 23 [Job103] 34
+Total Time is: 87.0
+AVG TurnAround Time: 14.5
+
+GANTT CHART FOR RR with 3 second Quantum
+------------------------
+0 [Job101] 3 [Job102] 6 [Job103] 9[Job104] 11[Job105] 14 [Job106] 17
+17 [Job101] 20 [Job102]21 [Job103] 24 [Job106]26
+26 [Job101]29 [Job103] 32
+32 [Job103]34
+
+TurnAround Time: 135.0
+AVG TurnAround Time: 22.5
+
+GANTT CHART FOR RR with 4 second Quantum
+------------------------
+0 [Job101] 4[Job102] 8 [Job103] 12[Job104] 14[Job105] 17 [Job106] 21
+21 [Job101] 25 [Job103] 29 [Job106]30
+30 [Job101]31 [Job103]34
+
+TurnAround Time: 134.0
+AVG TurnAround Time: 22.333334
+
+
+
+
+*****RESULTS TESTDATA 2*****
+This program will simulate several scheduling algorithms
+A GANTT Chart will be made for:
+ F-First Come First Served
+ S-Shortes Job First
+ R-Round Robin 
+
+Jobs  BurstTime 
+----------------
+Job201 14
+Job202 2
+Job203 7
+Job204 13
+Job205 8
+Job206 1
+Job207 9
+Job208 20
+Job209 3
+Job210 22
+Job211 12
+
+GANTT CHART FOR FCFS
+------------------------
+0 [Job201 ] 14 [Job202 ] 16 [Job203 ] 23 [Job204 ] 36 [Job205 ] 44 [Job206 ] 45 [Job207 ] 54 [Job208 ] 74 [Job209 ] 77 [Job210 ] 99 [Job211 ]  111
+Total Time is: 593.0
+AVG TurnAround Time: 53.90909090909091
+
+GANTT CHART FOR SJF
+------------------------
+0 [Job206] 1 [Job202] 3 [Job209] 6 [Job203] 13 [Job205] 21 [Job207] 30 [Job211] 42 [Job204] 55 [Job201] 69 [Job208] 89 [Job210] 111
+Total Time is: 440.0
+AVG TurnAround Time: 40.0
+
+GANTT CHART FOR RR with 3 second Quantum
+------------------------
+0 [Job201] 3[Job202] 5 [Job203] 8 [Job204] 11 [Job205] 14[Job206] 15 [Job207] 18 [Job208] 21[Job209] 24 [Job210] 27 [Job211] 30
+30 [Job201] 33 [Job203] 36 [Job204] 39 [Job205] 42 [Job207] 45 [Job208] 48 [Job210] 51 [Job211] 54
+54 [Job201] 57 [Job203]58 [Job204] 61 [Job205]63 [Job207]66 [Job208] 69 [Job210] 72 [Job211] 75
+75 [Job201] 78 [Job204] 81 [Job208] 84 [Job210] 87 [Job211]90
+90 [Job201]92 [Job204]93 [Job208] 96 [Job210] 99
+99 [Job208] 102 [Job210] 105
+105 [Job208]107 [Job210] 110
+110 [Job210]111
+
+TurnAround Time: 724.0
+AVG TurnAround Time: 65.818184
+
+GANTT CHART FOR RR with 4 second Quantum
+------------------------
+0 [Job201] 4[Job202] 6 [Job203] 10 [Job204] 14 [Job205] 18[Job206] 19 [Job207] 23 [Job208] 27[Job209] 30 [Job210] 34 [Job211] 38
+38 [Job201] 42 [Job203]45 [Job204] 49 [Job205]53 [Job207] 57 [Job208] 61 [Job210] 65 [Job211] 69
+69 [Job201] 73 [Job204] 77 [Job207]78 [Job208] 82 [Job210] 86 [Job211]90
+90 [Job201]92 [Job204]93 [Job208] 97 [Job210] 101
+101 [Job208]105 [Job210] 109
+109 [Job210]111
+
+TurnAround Time: 722.0
+AVG TurnAround Time: 65.63636
+
+
+
+
+
+*****RESULTS TESTDATA 3****
+
+This program will simulate several scheduling algorithms
+A GANTT Chart will be made for:
+ F-First Come First Served
+ S-Shortes Job First
+ R-Round Robin 
+
+Jobs  BurstTime 
+----------------
+Job301 8
+Job302 3
+Job303 25
+Job304 8
+Job305 4
+Job306 5
+Job307 2
+Job308 1
+Job309 10
+Job310 20
+Job311 16
+Job312 3
+Job313 7
+Job314 15
+Job315 18
+Job316 11
+Job317 12
+Job318 12
+
+GANTT CHART FOR FCFS
+------------------------
+0 [Job301 ] 8 [Job302 ] 11 [Job303 ] 36 [Job304 ] 44 [Job305 ] 48 [Job306 ] 53 [Job307 ] 55 [Job308 ] 56 [Job309 ] 66 [Job310 ] 86 [Job311 ] 102 [Job312 ] 105 [Job313 ] 112 [Job314 ] 127 [Job315 ] 145 [Job316 ] 156 [Job317 ] 168 [Job318 ]  180
+Total Time is: 1558.0
+AVG TurnAround Time: 86.55555555555556
+
+GANTT CHART FOR SJF
+------------------------
+0 [Job308] 1 [Job307] 3 [Job302] 6 [Job312] 9 [Job305] 13 [Job306] 18 [Job313] 25 [Job301] 33 [Job304] 41 [Job309] 51 [Job316] 62 [Job317] 74 [Job318] 86 [Job314] 101 [Job311] 117 [Job315] 135 [Job310] 155 [Job303] 180
+Total Time is: 1110.0
+AVG TurnAround Time: 61.666666666666664
+
+GANTT CHART FOR RR with 3 second Quantum
+------------------------
+0 [Job301] 3[Job302] 6 [Job303] 9 [Job304] 12 [Job305] 15 [Job306] 18[Job307] 20[Job308] 21 [Job309] 24 [Job310] 27 [Job311] 30[Job312] 33 [Job313] 36 [Job314] 39 [Job315] 42 [Job316] 45 [Job317] 48 [Job318] 51
+51 [Job301] 54 [Job303] 57 [Job304] 60 [Job305]61 [Job306]63 [Job309] 66 [Job310] 69 [Job311] 72 [Job313] 75 [Job314] 78 [Job315] 81 [Job316] 84 [Job317] 87 [Job318] 90
+90 [Job301]92 [Job303] 95 [Job304]97 [Job309] 100 [Job310] 103 [Job311] 106 [Job313]107 [Job314] 110 [Job315] 113 [Job316] 116 [Job317] 119 [Job318] 122
+122 [Job303] 125 [Job309]126 [Job310] 129 [Job311] 132 [Job314] 135 [Job315] 138 [Job316]140 [Job317]143 [Job318]146
+146 [Job303] 149 [Job310] 152 [Job311] 155 [Job314]158 [Job315] 161
+161 [Job303] 164 [Job310] 167 [Job311]168 [Job315]171
+171 [Job303] 174 [Job310]176
+176 [Job303] 179
+179 [Job303]180
+
+TurnAround Time: 1908.0
+AVG TurnAround Time: 106.0
+
+GANTT CHART FOR RR with 4 second Quantum
+------------------------
+0 [Job301] 4[Job302] 7 [Job303] 11 [Job304] 15[Job305] 19 [Job306] 23[Job307] 25[Job308] 26 [Job309] 30 [Job310] 34 [Job311] 38[Job312] 41 [Job313] 45 [Job314] 49 [Job315] 53 [Job316] 57 [Job317] 61 [Job318] 65
+65 [Job301]69 [Job303] 73 [Job304]77 [Job306]78 [Job309] 82 [Job310] 86 [Job311] 90 [Job313]93 [Job314] 97 [Job315] 101 [Job316] 105 [Job317] 109 [Job318] 113
+113 [Job303] 117 [Job309]119 [Job310] 123 [Job311] 127 [Job314] 131 [Job315] 135 [Job316]138 [Job317]142 [Job318]146
+146 [Job303] 150 [Job310] 154 [Job311]158 [Job314]161 [Job315] 165
+165 [Job303] 169 [Job310]173 [Job315]175
+175 [Job303] 179
+179 [Job303]180
+
+TurnAround Time: 1827.0
+AVG TurnAround Time: 101.5
